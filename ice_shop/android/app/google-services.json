@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "880716846046",
+    "project_id": "iceshop-48c0e",
+    "storage_bucket": "iceshop-48c0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880716846046:android:e90dea84dba278c160c34f",
+        "android_client_info": {
+          "package_name": "com.example.ice_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880716846046-mdomj6bas9il94ttsoaauj1nsj8i3ag9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ice_shop",
+            "certificate_hash": "2f2eaf6317bd437825984f05570351160dfbe321"
+          }
+        },
+        {
+          "client_id": "880716846046-0sqqbp3a686f95aihb2ib92fjqnrgnof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1J2JuULihledk-70iY2laM-w37glWt8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880716846046-0sqqbp3a686f95aihb2ib92fjqnrgnof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
