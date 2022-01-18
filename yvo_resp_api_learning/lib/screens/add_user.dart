@@ -9,25 +9,20 @@ class AddUserEdit extends StatefulWidget {
 }
 
 class _AddUserEditState extends State<AddUserEdit> {
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   HttpGlobalDatasource httpGlobalDatasource = HttpGlobalDatasource();
 
-   TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
   TextEditingController _lastNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
 
-   UserModel userData;
-
-   
-
+  UserModel userData;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-
       body: Form(
         key: _formKey,
         child: Padding(
@@ -36,13 +31,8 @@ class _AddUserEditState extends State<AddUserEdit> {
             children: [
               ListTile(
                 title: TextFormField(
-                  
-                  onFieldSubmitted: (_) {
-                    
-                  },
-                  onSaved: (value) {
-                    
-                  },
+                  onFieldSubmitted: (_) {},
+                  onSaved: (value) {},
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
                   controller: _firstNameController,
@@ -59,17 +49,11 @@ class _AddUserEditState extends State<AddUserEdit> {
               // last_name textfield
               ListTile(
                 title: TextFormField(
-                  
-
-                  
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
                   controller: _lastNameController,
                   cursorColor: Colors.black,
-                  onFieldSubmitted: (_) {
-                    
-                  },
-
+                  onFieldSubmitted: (_) {},
                   decoration: InputDecoration(
                     labelText: 'Prenom',
                     border: new OutlineInputBorder(
@@ -80,9 +64,7 @@ class _AddUserEditState extends State<AddUserEdit> {
                       borderSide: new BorderSide(color: Colors.black),
                     ),
                   ),
-                  onSaved: (value) {
-                  
-                  },
+                  onSaved: (value) {},
                 ),
               ),
               // AGE
@@ -90,12 +72,10 @@ class _AddUserEditState extends State<AddUserEdit> {
               ListTile(
                 title: TextFormField(
                   controller: _emailController,
-                  onFieldSubmitted: (_) {
-                    
-                  },
+                  onFieldSubmitted: (_) {},
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                
+
                   // controller: _ageController,
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -110,9 +90,6 @@ class _AddUserEditState extends State<AddUserEdit> {
                   ),
                 ),
               ),
-              
-
-             
 
               Padding(
                 padding: const EdgeInsets.all(12),
@@ -130,24 +107,22 @@ class _AddUserEditState extends State<AddUserEdit> {
         ),
       ),
     );
-    
   }
 
-
   addNewUser() async {
-    
     await EasyLoading.show(status: "Chargement en cours ...");
     await httpGlobalDatasource
-        .addNewUser(firstName: _firstNameController.text, lastName: _lastNameController.text, email: _emailController.text )
+        .addNewUser(
+            firstName: _firstNameController.text,
+            lastName: _lastNameController.text,
+            email: _emailController.text)
         .then((response) async {
-        
       setState(() {
         //userData = response;
       });
       await EasyLoading.dismiss();
     }).catchError((err) async {
-       await EasyLoading.dismiss();
+      await EasyLoading.dismiss();
     });
   }
-
 }

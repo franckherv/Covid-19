@@ -8,7 +8,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 class DetaiScreen extends StatefulWidget {
   final Users user;
   DetaiScreen({
-   @required this.user,
+    @required this.user,
   });
   @override
   _DetaiScreenState createState() => _DetaiScreenState();
@@ -38,6 +38,22 @@ class _DetaiScreenState extends State<DetaiScreen> {
     }).catchError((error) async {
       await EasyLoading.dismiss();
     });
+  }
+
+  deleteUser() async {
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..backgroundColor = Colors.white
+      ..indicatorColor = Colors.red
+      ..maskColor = Colors.red
+      ..userInteractions = false;
+    await EasyLoading.show(status: "suppression en cours ...");
+    await httpGlobalDataSource.deleteUser(userId: widget.user.id).then((response) {
+        setState(() {
+          
+        });
+    });
+    
   }
 
   @override
@@ -73,7 +89,10 @@ class _DetaiScreenState extends State<DetaiScreen> {
                                 value: downloadProgress.progress),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                )
+                ),
+                IconButton(
+                    onPressed: deleteUser,
+                    icon: Icon(Icons.delete, color: Colors.red, size: 70))
               ],
             )
           : Container(),

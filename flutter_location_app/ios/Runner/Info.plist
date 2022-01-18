@@ -26,6 +26,12 @@
 	<string>Vous allez prendre une photo</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Vous allez prendre une photo</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Obtention de la position actuelle</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Obtention de la position actuelle</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Obtention de la position actuelle</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

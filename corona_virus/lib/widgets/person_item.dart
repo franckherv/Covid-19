@@ -111,9 +111,7 @@ class PersonItem extends StatelessWidget {
                                 TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop(true);
-                                      Provider.of<Persons>(context,
-                                              listen: false)
-                                          .deletePerson(id);
+                                      Provider.of<Persons>(context,listen: false).deletePerson(id);
                                     },
                                     child: Text("Oui")),
                               ],

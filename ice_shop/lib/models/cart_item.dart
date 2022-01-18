@@ -32,7 +32,7 @@ class CartItemModel {
 
 
 
-  CartItemModel.fromMap(Map data){
+   CartItemModel.fromMap(Map data){
     _id = data[ID];
     _name =  data[NAME];
     _image =  data[IMAGE];
@@ -40,6 +40,7 @@ class CartItemModel {
     _price = data[PRICE];
     _size = data[SIZE];
     _color = data[COLOR];
+  
   }
 
   Map toMap() => {

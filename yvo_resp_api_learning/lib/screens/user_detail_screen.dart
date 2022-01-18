@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yvo_resp_api_learning/http_data_source/Http_Global_Data_source.dart';
 import 'package:yvo_resp_api_learning/models/user_model.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:yvo_resp_api_learning/screens/user_edit_screen.dart';
 import 'package:yvo_resp_api_learning/widgets/custum_animation.dart';
 
 class UserDetailScreen extends StatefulWidget {
@@ -21,31 +22,28 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
   UserModel userData;
 
   getSingleUserList() async {
-     EasyLoading.instance
-                  ..displayDuration = const Duration(milliseconds: 2000)
-                  ..backgroundColor = Colors.white
-                  ..indicatorColor = Colors.red
-                  ..maskColor = Colors.red
-                  ..userInteractions = false;
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..backgroundColor = Colors.white
+      ..indicatorColor = Colors.red
+      ..maskColor = Colors.red
+      ..userInteractions = false;
     await EasyLoading.show(status: "Chargement en cours ...");
     await httpGlobalDatasource
         .getSingleUser(userId: widget.user.id)
         .then((response) async {
-        
       setState(() {
         userData = response;
       });
       await EasyLoading.dismiss();
     }).catchError((err) async {
-       await EasyLoading.dismiss();
+      await EasyLoading.dismiss();
     });
   }
 
-
-
-   @override
+  @override
   void initState() {
-     getSingleUserList();
+    getSingleUserList();
     super.initState();
   }
 
@@ -259,7 +257,24 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
                   Expanded(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [Text("Email"), Container()],
+                    children: [
+                      Text("Email"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AddUserEdit(
+                                      userData: userData
+                                    )));
+                              },
+                              icon: Icon(Icons.edit)),
+                          IconButton(
+                              onPressed: deleteUser, icon: Icon(Icons.delete)),
+                        ],
+                      )
+                    ],
                   ))
                 ],
               ),
@@ -268,8 +283,23 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
     ));
   }
 
-    void statusCallback(EasyLoadingStatus status) {
-    print('Test EasyLoading Status $status');
+  deleteUser() async {
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..backgroundColor = Colors.white
+      ..indicatorColor = Colors.red
+      ..maskColor = Colors.red
+      ..userInteractions = false;
+    await EasyLoading.show(status: "suppression en cours ...");
+    await httpGlobalDatasource
+        .deleteUser(userId: widget.user.id)
+        .then((response) {
+      EasyLoading.dismiss();
+      Navigator.of(context).pop();
+    });
   }
 
+  void statusCallback(EasyLoadingStatus status) {
+    print('Test EasyLoading Status $status');
+  }
 }

@@ -19,7 +19,6 @@ class HttpGlobalDataSource {
       throw Exception("$e");
     }
   }
-  
 
   Future<Users> getSingleUser({String userID}) async {
     try {
@@ -32,10 +31,9 @@ class HttpGlobalDataSource {
   }
 
   Future<Users> sendUser(
-      {String firstName, String lastName, String email, }) async {
+      {String firstName, String lastName, String email}) async {
     try {
       var userData = {
-        
         'firstName': firstName,
         'lastName': lastName,
         'email': email
@@ -45,6 +43,17 @@ class HttpGlobalDataSource {
     } catch (e, strack) {
       print("===${e.response}===== ##$strack");
       throw Exception("$e");
+    }
+  }
+
+  Future deleteUser({String userId}) async {
+    try {
+      Response response = await dio.delete("user/$userId");
+      print(response);
+      return response.data;
+    } catch (error) {
+      print(error);
+      throw Exception("-------${error.response}---------");
     }
   }
 }

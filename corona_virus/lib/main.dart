@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:corona_virus/providers/person_provider.dart';
 import 'package:corona_virus/screens/edit_screen.dart';
 import 'package:corona_virus/screens/splash_screen.dart';

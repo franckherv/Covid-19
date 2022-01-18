@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          accentColor: Colors.amber,
-          primarySwatch: Colors.indigo,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo).copyWith(secondary: Colors.amber),
         ),
         home: PlaceListScreen(),
         routes: {

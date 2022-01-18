@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_location_app/providers/great_place_provider.dart';
+import 'package:flutter_location_app/widgets/location_input.dart';
 import 'package:provider/provider.dart';
 import '../widgets/image_picker.dart';
 
@@ -52,15 +53,18 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       controller: titleController,
                     ),
                     SizedBox(height: 10),
-                    ImageInput(_selecteImage)
+                    ImageInput(_selecteImage),
+                    SizedBox(height: 10),
+                    LocationInput(),
                   ],
                 ),
               ),
             ),
           ),
           ElevatedButton.icon(
+            
             style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).accentColor,
+                primary: Colors.amber,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap),
             onPressed: savePlace,
             icon: Icon(Icons.add),
